@@ -1,0 +1,34 @@
+{
+  "name": "dpi/ak_gravatar",
+  "description": "Gravatar for Avatar Kit",
+  "minimum-stability": "stable",
+  "license": "Apache-2.0",
+  "support": {
+    "issues": "https://github.com/dpi/ak_gravatar"
+  },
+  "authors": [
+    {
+      "name": "Daniel Phin",
+      "email": "pro@danielph.in",
+      "homepage": "https://dpi.id.au"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "dpi\\ak_gravatar\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "require-dev": {
+    "drupal/coder": "^8.2.12",
+    "phpunit/phpunit": "5",
+    "squizlabs/php_codesniffer": "^2.7"
+  },
+  "require": {
+    "php": "~7.1",
+    "dpi/ak": "^1@dev",
+    "league/uri": "^5.0"
+  }
+}
