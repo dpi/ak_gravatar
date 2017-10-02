@@ -14,16 +14,15 @@ class GravatarTest extends PHPUnit_Framework_TestCase {
    * Test no difference between raw hash casing.
    */
   public function testHashCase() {
-    $instance = new GravatarUniversal();
     $configuration = (new AvatarConfiguration())
       ->setProtocol('http');
+    $instance = new GravatarUniversal($configuration);
 
     $identifier1 = ($instance->createIdentifier())
       ->setRaw('hello@example.com');
     $identifier2 = ($instance->createIdentifier())
       ->setRaw('HELLO@EXAMPLE.COM');
 
-    $instance->setConfiguration($configuration);
     $this->assertSame($instance->getAvatar($identifier1), $instance->getAvatar($identifier2));
   }
 
@@ -31,13 +30,12 @@ class GravatarTest extends PHPUnit_Framework_TestCase {
    * Test insecure URL with no customisation.
    */
   public function testBasicInsecure() {
-    $instance = new GravatarUniversal();
     $configuration = (new AvatarConfiguration())
       ->setProtocol('http');
+    $instance = new GravatarUniversal($configuration);
     $identifier = ($instance->createIdentifier())
       ->setRaw('hello@example.com');
 
-    $instance->setConfiguration($configuration);
     $this->assertSame('http://gravatar.com/avatar/cb8419c1d471d55fbca0d63d1fb2b6ac', $instance->getAvatar($identifier));
   }
 
@@ -45,13 +43,12 @@ class GravatarTest extends PHPUnit_Framework_TestCase {
    * Test secure URL with no customisation.
    */
   public function testBasicSecure() {
-    $instance = new GravatarUniversal();
     $configuration = (new AvatarConfiguration())
       ->setProtocol('https');
+    $instance = new GravatarUniversal($configuration);
     $identifier = ($instance->createIdentifier())
       ->setRaw('hello@example.com');
 
-    $instance->setConfiguration($configuration);
     $this->assertSame('https://secure.gravatar.com/avatar/cb8419c1d471d55fbca0d63d1fb2b6ac', $instance->getAvatar($identifier));
   }
 
@@ -68,7 +65,6 @@ class GravatarTest extends PHPUnit_Framework_TestCase {
    * @dataProvider dimensionMap
    */
   public function testProtocolValidator(string $uri, ?int $width, ?int $height) {
-    $instance = new GravatarUniversal();
     $configuration = (new AvatarConfiguration())
       ->setProtocol('https');
     if ($width) {
@@ -77,11 +73,11 @@ class GravatarTest extends PHPUnit_Framework_TestCase {
     if ($height) {
       $configuration->setHeight($height);
     }
+    $instance = new GravatarUniversal($configuration);
 
     $identifier = ($instance->createIdentifier())
       ->setRaw('hello@example.com');
 
-    $instance->setConfiguration($configuration);
     $this->assertSame($uri, $instance->getAvatar($identifier));
 
   }
