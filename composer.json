@@ -29,7 +29,7 @@
   "require": {
     "php": "~7.1",
     "dpi/ak": "^1@dev",
-    "league/uri": "^5.0"
+    "jakeasmith/http_build_url": "^1.0"
   },
   "extra": {
     "branch-alias": {

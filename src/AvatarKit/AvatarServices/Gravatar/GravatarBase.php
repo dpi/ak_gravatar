@@ -7,8 +7,6 @@ namespace dpi\ak_gravatar\AvatarKit\AvatarServices\Gravatar;
 use dpi\ak\AvatarIdentifierInterface;
 use dpi\ak\AvatarKit\AvatarServices\AvatarServiceBase;
 use dpi\ak_gravatar\GravatarAvatarIdentifier;
-use League\Uri\Components\Query;
-use League\Uri\Schemes\Http;
 
 /**
  * Common functionality for Gravatar services.
@@ -35,11 +33,9 @@ abstract class GravatarBase extends AvatarServiceBase implements GravatarInterfa
     if ($width) {
       $query['s'] = $width;
     }
-    if ($query) {
-      $components['query'] = Query::build($query);
-    }
+    $components['query'] = http_build_query($query);
 
-    return (string) Http::createFromComponents($components);
+    return http_build_url($components);
   }
 
   /**
