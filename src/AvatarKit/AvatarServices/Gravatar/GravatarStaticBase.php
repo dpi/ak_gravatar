@@ -14,7 +14,7 @@ abstract class GravatarStaticBase extends GravatarBase implements GravatarInterf
   /**
    * {@inheritdoc}
    */
-  public function getAvatar(AvatarIdentifierInterface $identifier) : string {
+  public function getAvatar(AvatarIdentifierInterface $identifier) : ?string {
     $components = parse_url(parent::getAvatar($identifier) . '?q=2');
 
     // Deconstruct query.

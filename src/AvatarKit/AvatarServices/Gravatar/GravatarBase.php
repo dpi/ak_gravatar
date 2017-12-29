@@ -16,7 +16,7 @@ abstract class GravatarBase extends AvatarServiceBase implements GravatarInterfa
   /**
    * {@inheritdoc}
    */
-  public function getAvatar(AvatarIdentifierInterface $identifier) : string {
+  public function getAvatar(AvatarIdentifierInterface $identifier) : ?string {
     $components = [];
 
     $components['scheme'] = $this->getConfiguration()->getProtocol();
